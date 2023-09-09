@@ -1,0 +1,3 @@
+# this is String Indexing question
+w= "welcome to india"
+print(w[4])
