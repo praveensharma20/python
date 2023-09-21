@@ -1,0 +1,15 @@
+#this is simple dictionaries program in Working with Key-Value Pairs
+#this program give all the data of student
+student={'name':'Rahul','age':'25','subject':['maths','sci','computerSci']}
+print(student)
+
+
+#this program give only asking value
+student={'name':'Rahul','age':'25','subject':['maths','sci','computerSci']}
+print(student['subject'])
+
+
+#this program update the data wo given program through Update key
+student={'name':'Rahul','age':'25','subject':['maths','sci','computerSci']}
+student.update({'name':'Abhishek'})
+print(student)
