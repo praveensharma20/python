@@ -4,7 +4,7 @@ SecureReview AI is a production-ready blueprint for an intelligent and secure co
 
 ## Capabilities
 
-- JWT-based authentication with password hashing.
+- JWT-based authentication with password hashing and a mandatory non-default signing secret.
 - Secure archive upload with size, extension, path traversal, and zip-bomb protections.
 - GitHub repository ingestion via allow-listed `https://github.com/<owner>/<repo>` URLs.
 - Static analysis orchestration for Semgrep and Bandit with timeout controls.
@@ -35,6 +35,7 @@ cd backend
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+export JWT_SECRET="$(python -c 'import secrets; print(secrets.token_urlsafe(48))')"
 uvicorn app.main:app --reload
 ```
 
@@ -67,4 +68,5 @@ npm run dev
 - Run scan jobs in ephemeral containers without secrets, metadata-service access, or write access outside a scratch directory.
 - Validate and cap archive contents before extraction.
 - Prefer tuned Semgrep rulesets and confidence scoring to reduce false positives.
+- Set a strong, private `JWT_SECRET` before startup; the backend fails fast if it is missing or left as the placeholder.
 - Require GitHub App installation tokens in production rather than user-submitted personal access tokens.
